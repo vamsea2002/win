@@ -22,6 +22,4 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Run
-    - run: |
-      ls
-      dotnet bin\Debug\net6.0\PrintMsg.dll
+      run: dotnet bin\Debug\net6.0\PrintMsg.dll
