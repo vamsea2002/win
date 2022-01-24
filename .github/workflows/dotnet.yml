@@ -10,7 +10,7 @@ on:
     
 
 jobs:
-  build:
+  Build:
     runs-on: windows-latest
 
     steps:
@@ -27,6 +27,7 @@ jobs:
       run: dotnet bin\Debug\net6.0\PrintMsg.dll
   
   Auto-pull-request:
+    needs: Build
     runs-on: windows-latest
 
     steps:
