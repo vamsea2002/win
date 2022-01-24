@@ -10,30 +10,29 @@ on:
     
 
 jobs:
-  build:
+  
+  runs-on: windows-latest
 
-    runs-on: windows-latest
+  steps:
+  - uses: actions/checkout@v2
+  - name: Setup .NET
+    uses: actions/setup-dotnet@v1
+    with:
+      dotnet-version: 6.0.x
+  - name: Restore dependencies
+    run: dotnet restore
+  - name: Build
+    run: dotnet build --no-restore
+  - name: Run
+    run: dotnet bin\Debug\net6.0\PrintMsg.dll
 
-    steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 6.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Run
-      run: dotnet bin\Debug\net6.0\PrintMsg.dll
-
-    - name: pull-request
-      uses: TheRealWaldo/pull-request@v0.2.0
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        title: Automated-pull-request-from-my-test-branch
-        base: main
-        head: test
-        assignee: vamsea2002
-        body: body of commit
+  - name: pull-request
+    uses: TheRealWaldo/pull-request@v0.2.0
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    with:
+      title: Automated-pull-request-from-my-test-branch
+      base: main
+      head: test
+      assignee: vamsea2002
+      body: body of commit
