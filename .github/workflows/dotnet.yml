@@ -10,11 +10,15 @@ on:
     
 
 jobs:
-  Build:
+  Checkout:
     runs-on: windows-latest
-
     steps:
     - uses: actions/checkout@v2
+     
+  Setup-dotnet:
+    needs: Checkout
+    runs-on: windows-latest
+    steps:
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
@@ -27,7 +31,7 @@ jobs:
       run: dotnet bin\Debug\net6.0\PrintMsg.dll
   
   Auto-pull-request:
-    needs: Build
+    needs: Setup-dotnet
     runs-on: windows-latest
 
     steps:
