@@ -40,5 +40,5 @@ jobs:
         committer: vamsea2002
         author: vamsea2002
         body: This is automated
-        token: ${{secrets.GITHUB_TOZEN}}
+        token: ${{secrets.GITHUB_TOKEN}}
         delete-branch: false
