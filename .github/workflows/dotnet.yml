@@ -2,12 +2,12 @@ name: .NET
 
 on:
   push:
-    branches: [ main, test, dev, qa ]  
+    branches: [ test, dev, qa ]  
   
   workflow_dispatch:
     
 jobs:
- 
+  
   automerge:
     if: github.event.review.state == 'approved' || !github.event.review
     runs-on: ubuntu-latest
