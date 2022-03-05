@@ -1,1 +1,1 @@
-# win
+# dotnet core sample program
