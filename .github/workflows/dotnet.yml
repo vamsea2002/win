@@ -1,7 +1,8 @@
 name: .NET
 
 on:
-  
+  push:
+    branches: [ main, test, dev, qa ]
   pull_request:
     branches: [ main, test, dev, qa ]
   
