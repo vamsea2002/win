@@ -13,11 +13,15 @@ jobs:
     steps:
     - uses: actions/checkout@v2
      
-    - uses: reitermarkus/automerge@v2
-      with:
-        token: ${{ secrets.MY_GITHUB_TOKEN }}
-        merge-method: rebase
-        do-not-merge-labels: never-merge
-        required-labels: automerge
-        pull-request: ${{ github.event.inputs.pull-request }}
-        dry-run: true
+  automerge:
+    if: github.event.review.state == 'approved' || !github.event.review
+    runs-on: ubuntu-latest
+    steps:
+      - uses: reitermarkus/automerge@v1.5.2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          merge-method: rebase
+          do-not-merge-labels: never-merge
+          required-labels: automerge
+          pull-request: ${{ github.event.inputs.pull-request }}
+          dry-run: false
