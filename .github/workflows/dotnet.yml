@@ -7,11 +7,7 @@ on:
   workflow_dispatch:
     
 jobs:
-  Checkout-and-Build:
-    runs-on: windows-latest
-    steps:
-    - uses: actions/checkout@v2
-     
+ 
   automerge:
     if: github.event.review.state == 'approved' || !github.event.review
     runs-on: ubuntu-latest
