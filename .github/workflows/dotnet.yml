@@ -7,8 +7,9 @@ on:
   workflow_dispatch:
     
 jobs:
-  - name: Checkout
-  uses: actions/checkout@v3.0.0
+  Checkout-dotnet
+   steps:
+    - uses: actions/checkout@v3.0.0
 
   automerge:
     if: github.event.review.state == 'approved' || !github.event.review
