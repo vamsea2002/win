@@ -20,6 +20,6 @@ jobs:
       with:
         title: Automated Pull Request From dev Branch
         base: test
-        head: ${{env.GIT_BRANCH}}
+        head: dev
         assignee: vamsea2020
         body: Automated Pull Request From dev Branch       
