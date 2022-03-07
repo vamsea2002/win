@@ -20,7 +20,7 @@ jobs:
         title: "My pull request title"
         body: "My pull request body"
         branch: "main"
-        path: "*"
+        #path: "*"
         commit-message: "My commit message for uncommitted changes in lib/ folder"
         author: "vamsea2002"
         labels: label1, label2
