@@ -13,13 +13,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: pull-request
-      uses: repo-sync/pull-request@v2
+    - name: Create Pull Request
+      uses: TheRealWaldo/pull-request@v0.2.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT }}
       with:
-        destination_branch: "test"
-        github_token: ${{ secrets.PAT }}
-        pr_title: "Pulling ${{ github.ref }} into master" # Title of pull request
-        pr_body: ":crown: *An automated PR*"              # Full markdown support, requires pr_title to be set
-        pr_reviewer: "vamsea2020"                         # Comma-separated list (no spaces)
-        pr_assignee: "vamsea2020"                         # Comma-separated list (no spaces)
-        pr_label: "auto-pr"        
+        title: Automated Pull Request From dev Branch
+        base: test
+        head: ${{env.GIT_BRANCH}}
+        assignee: vamsea2020
+        body: Automated Pull Request From dev Branch       
