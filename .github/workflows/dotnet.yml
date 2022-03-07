@@ -9,15 +9,23 @@ on:
     
 jobs:
   Checkout-and-Build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
      
-    - uses: reitermarkus/automerge@v2
+    - uses: gr2m/create-or-update-pull-request-action@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        token: ${{ secrets.MY_GITHUB_TOKEN }}
-        merge-method: rebase
-        do-not-merge-labels: never-merge
-        required-labels: automerge
-        pull-request: ${{ github.event.inputs.pull-request }}
-        dry-run: true
+        title: "My pull request title"
+        body: "My pull request body"
+        branch: "main"
+        path: "*"
+        commit-message: "My commit message for uncommitted changes in lib/ folder"
+        author: "vamsea2002"
+        labels: label1, label2
+        assignees: vamsea2002, vamsea2020
+        reviewers: vamsea2002, vamsea2020
+        team_reviewers: vamsea2002, vamsea2020
+        auto-merge: merge
+        update-pull-request-title-and-body: true
