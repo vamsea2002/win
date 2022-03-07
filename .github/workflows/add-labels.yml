@@ -1,0 +1,21 @@
+name: Auto filling pull request
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  auto-filling-pull-request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add labels based on PR title
+        uses: jackwener/set-label-based-on-pr-title@v1
+        with:
+          words: >-
+            Update;
+            from;
+            dev
+          labels: >-
+            label1;
+            label2;
+            label3
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"

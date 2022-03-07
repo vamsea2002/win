@@ -22,12 +22,15 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         PULL_REQUEST_BRANCH: "test"
-    - uses: christianvuerings/add-labels@v1
+    - name: Add labels based on PR title
+      uses: jackwener/set-label-based-on-pr-title@v1
       with:
-        labels: |
-          minor release
-          bug
-        issue_number: release
-      
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        words: >-
+          Update;
+          from;
+          dev
+        labels: >-
+          label1;
+          label2;
+          label3
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
