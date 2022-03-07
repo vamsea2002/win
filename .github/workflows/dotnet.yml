@@ -2,22 +2,22 @@ name: .NET
 
 on:
   
-  pull_request:
+  push:
     branches: [ main, test, dev, qa ]
   
   workflow_dispatch:
     
 jobs:
   Checkout-and-Build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
      
-    - uses: reitermarkus/automerge@v2
-      with:
-        token: ${{ secrets.MY_GITHUB_TOKEN }}
-        merge-method: rebase
-        do-not-merge-labels: never-merge
-        required-labels: automerge
-        pull-request: ${{ github.event.inputs.pull-request }}
-        dry-run: true
+    - name: Derive from branch name
+      run: |         
+          echo "PULL_REQUEST_FROM_BRANCH=dev" >> $GITHUB_ENV
+    - name: pull-request-action
+      uses: vsoch/pull-request-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PULL_REQUEST_BRANCH: "test"
