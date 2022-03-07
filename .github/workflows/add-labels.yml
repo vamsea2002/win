@@ -18,4 +18,4 @@ jobs:
             label1;
             label2;
             label3
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          repo-token: "${{ secrets.PAT }}"
