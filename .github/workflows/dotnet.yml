@@ -13,19 +13,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2
      
-    - uses: gr2m/create-or-update-pull-request-action@v1
+    - name: Derive from branch name
+      run: |
+          # do custom parsing of your code / date to derive a branch from
+          PR_BRANCH_FROM=release-v$(cat VERSION)
+          export "PULL_REQUEST_FROM_BRANCH=${PR_BRANCH_FROM}" >> $GITHUB_ENV
+    - name: pull-request-action
+      uses: vsoch/pull-request-action@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        title: "My pull request title"
-        body: "My pull request body"
-        branch: "main"
-        #path: "*"
-        commit-message: "My commit message for uncommitted changes in lib/ folder"
-        author: "vamsea2002"
-        labels: label1, label2
-        assignees: vamsea2002, vamsea2020
-        reviewers: vamsea2002, vamsea2020
-        team_reviewers: vamsea2002, vamsea2020
-        auto-merge: merge
-        update-pull-request-title-and-body: true
+        PULL_REQUEST_BRANCH: "master"
