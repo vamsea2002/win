@@ -13,12 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-     
-    - name: Derive from branch name
-      run: |         
-          echo "PULL_REQUEST_FROM_BRANCH=dev" >> $GITHUB_ENV
-    - name: pull-request-action
-      uses: vsoch/pull-request-action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.PAT }}
-        PULL_REQUEST_BRANCH: "test"
+    - name: pull-request
+      uses: repo-sync/pull-request@v2
+      with:
+        destination_branch: "test"
+        github_token: ${{ secrets.GITHUB_TOKEN }}
