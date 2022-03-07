@@ -21,3 +21,10 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         PULL_REQUEST_BRANCH: "test"
+    - uses: christianvuerings/add-labels@v1
+      with:
+        labels: |
+          minor release
+          bug
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
