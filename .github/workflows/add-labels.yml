@@ -2,7 +2,7 @@ name: Auto filling pull request
 on:
   pull_request:
     types: [opened]
-
+  workflow_dispatch:
 jobs:
   auto-filling-pull-request:
     runs-on: ubuntu-latest
