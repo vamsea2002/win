@@ -23,15 +23,3 @@ jobs:
         head: dev
         assignee: vamsea2020
         body: Update from dev
-    - name: Add labels based on PR title
-      uses: jackwener/set-label-based-on-pr-title@v1
-      with:
-        words: >-
-          Update;
-          from;
-          dev
-        labels: >-
-          automerge;
-          release;
-          done
-        repo-token: "${{ secrets.PAT }}"
