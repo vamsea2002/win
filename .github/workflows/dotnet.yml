@@ -1,10 +1,8 @@
 name: .NET
 
-on:
-  pull_request_review:
-    types: [submitted]
+on:  
   push:
-    branches: [ main, test, dev, qa ]
+    branches: [ dev ]
   
   workflow_dispatch:
     
