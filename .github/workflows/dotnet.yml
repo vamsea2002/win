@@ -18,8 +18,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.PAT }}
       with:
-        title: Automated Pull Request From dev Branch
+        title: Update from dev
         base: test
         head: dev
         assignee: vamsea2020
-        body: Automated Pull Request From dev Branch       
+        body: Update from dev       
