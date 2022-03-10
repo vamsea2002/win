@@ -2,43 +2,23 @@ name: .NET
 
 on:
   push:
-    branches: [ test, dev, qa ]  
-  
-  pull_request_review:
-
+    branches:
+      - dev
 
   workflow_dispatch:
-    
-jobs:
-  labelWhenApproved:
-    name: Label when approved
-    runs-on: ubuntu-latest
-    steps:
-    - name: Label when approved
-      uses: pullreminders/label-when-approved-action@master
-      env:
-        APPROVALS: "2"
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        ADD_LABEL: "automerge"
-        
-  checkout-dotnet:
-   if: github.event_name == 'pull_request'
-   runs-on: ubuntu-latest
-   steps:
-    - uses: actions/checkout@v3.0.0
 
-  automerge:
-    if: github.event.review.state == 'approved' || !github.event.review
+jobs:
+  Checkout-and-Build:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout-repo
-        id: checkout-repoid   
-        uses: actions/checkout@v3.0.0
-      - uses: reitermarkus/automerge@v1.5.2
+      - uses: actions/checkout@v2
+      - name: Create Pull Request
+        uses: TheRealWaldo/pull-request@v0.2.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          merge-method: merge
-          do-not-merge-labels: never-merge
-          required-labels: automerge
-          pull-request: ${{ github.event.inputs.pull-request }}
-          dry-run: false
+          title: Update from dev
+          base: test
+          head: dev
+          assignee: vamsea2020
+          body: Update from dev
