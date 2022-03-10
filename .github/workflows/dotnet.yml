@@ -11,14 +11,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Create pull Request
-        if: github.ref == 'refs/heads/dev'
-        uses: TheRealWaldo/pull-request@v0.2.0
-        env:
-         GITHUB_TOKEN: ${{secrets.PAT}}
-        with:
-         title: Automated Pull Request From dev Branch
-         base: master
-         head: dev
-         assignee: vamsea2020
-         body: Automated Pull Request From dev Branch
+      - name: Create Pull Request with CURL
+        run: 'curl -X POST -u v848432_ual:${{secrets.PAT}} -d "{\"title\":\"Automated Pull Request From dev Branch\",\"body\": \"Automated Pull Request From dev Branch into master branch\",\"head\": \"dev\",\"base\": \"main\"}" https://api.github.com/repos/United-Airlines-Org/SoftwareEngineering.EbsModels/pulls'
