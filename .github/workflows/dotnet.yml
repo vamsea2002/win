@@ -2,8 +2,7 @@ name: .NET
 
 on:
   push:
-    branches:
-      - dev
+    branches: [dev]
 
   workflow_dispatch:
 
@@ -12,13 +11,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Create Pull Request
-        uses: TheRealWaldo/pull-request@v0.2.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
-        with:
-          title: Update from dev
-          base: test
-          head: dev
-          assignee: vamsea2020
-          body: Update from dev
+      - name: Create Pull Request with CURL
+        run: 'curl -X POST -u vamsea2002:${{secrets.PAT}} -d "{\"title\":\"Automated Pull Request From dev Branch\",\"body\": \"Automated Pull Request From dev Branch into master branch\",\"head\": \"dev\",\"base\": \"main\"}" https://api.github.com/repos/vamsea2002/win/pulls'
