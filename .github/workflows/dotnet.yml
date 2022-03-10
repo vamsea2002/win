@@ -13,8 +13,3 @@ jobs:
       - uses: actions/checkout@v2
       - name: Create Pull Request with CURL
         run: 'curl -X POST --header "Authorization: token ${{secrets.PAT}}" -d "{\"title\":\"Automated Pull Request From dev Branch\",\"body\": \"Automated Pull Request From dev Branch into master branch\",\"head\": \"dev\",\"base\": \"main\"}" https://api.github.com/repos/vamsea2002/win/pulls'
-
-
-
-
---header "Authorization: token ${{secrets.PAT}}"
