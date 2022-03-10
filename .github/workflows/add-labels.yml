@@ -2,17 +2,17 @@ name: Auto filling pull request
 on:
   pull_request:
     types: [opened]
-    
+
   pull_request_review:
-    types: [submitted]  
-    
+    types: [submitted]
+
   workflow_dispatch:
 jobs:
   auto-filling-pull-request:
     runs-on: ubuntu-latest
     steps:
       - name: Labeler
-        uses: actions/labeler@v4   
+        uses: actions/labeler@v4
         with:
           repo-token: "${{ secrets.PAT }}"
           configuration-path: ".github/labeler.yml"
