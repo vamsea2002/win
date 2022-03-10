@@ -12,4 +12,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Create Pull Request with CURL
-        run: 'curl -X POST -u v848432_ual:${{secrets.PAT}} -d "{\"title\":\"Automated Pull Request From dev Branch\",\"body\": \"Automated Pull Request From dev Branch into master branch\",\"head\": \"dev\",\"base\": \"main\"}" https://api.github.com/repos/United-Airlines-Org/SoftwareEngineering.EbsModels/pulls'
+        run: 'curl -X POST -u vamsea2002:${{secrets.PAT}} -d "{\"title\":\"Automated Pull Request From dev Branch\",\"body\": \"Automated Pull Request From dev Branch into master branch\",\"head\": \"dev\",\"base\": \"main\"}" https://api.github.com/repos/vamsea2002/win/pulls'
