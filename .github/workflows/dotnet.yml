@@ -18,7 +18,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.PAT }}
         with:
           title: Update from dev
-          base: test
+          base: master
           head: dev
           assignee: vamsea2020
           body: Update from dev
