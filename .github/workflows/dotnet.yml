@@ -11,13 +11,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Create Pull Request
+      - name: Create pull Request
+        if: github.ref == 'refs/heads/dev'
         uses: TheRealWaldo/pull-request@v0.2.0
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         GITHUB_TOKEN: ${{secrets.PAT}}
         with:
-          title: Pull request from Dev to Master Branch
-          base: master
-          head: dev
-          assignee: vamsea2020
-          body: Pull request from Dev to Master Branch
+         title: Automated Pull Request From dev Branch
+         base: master
+         head: dev
+         assignee: vamsea2020
+         body: Automated Pull Request From dev Branch
