@@ -28,7 +28,7 @@ jobs:
           MERGE_FORKS: "false"
           MERGE_RETRIES: "1"
           MERGE_RETRY_SLEEP: "10000"
-          MERGE_REQUIRED_APPROVALS: "1"
+          MERGE_REQUIRED_APPROVALS: "0"
           UPDATE_LABELS: ""
           UPDATE_METHOD: "merge"
           #PULL_REQUEST: "1"
