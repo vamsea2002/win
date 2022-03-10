@@ -2,7 +2,7 @@ name: Auto filling pull request
 on:
 
   pull_request:
-    branches: [main]
+    branches: [dev]
     types:
       - "opened"
 
