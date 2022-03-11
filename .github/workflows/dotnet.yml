@@ -29,7 +29,6 @@ jobs:
           done
           echo All_Files=$dest >> $GITHUB_ENV
           echo destin: $dest
-          
 
       - name: Create Pull Request with CURL
         run: 'curl -X POST --header "Authorization: token ${{secrets.PAT}}" -d "{\"title\":\"Automated Pull Request From dev Branch\",\"body\": \"${{env.All_Files}}\",\"head\": \"dev\",\"base\": \"main\"}" https://api.github.com/repos/vamsea2002/win/pulls'
