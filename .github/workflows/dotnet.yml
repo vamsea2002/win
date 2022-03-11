@@ -20,12 +20,12 @@ jobs:
 
       - name: List all changed files
         run: |
-          dest=""         
+          dest="List of File Changes\n"         
           for file in ${{ steps.changed-files.outputs.all_changed_and_modified_files }}; 
           do
           dest+="${file}\n"          
           done
-          echo All_Files=All Added and Modified flies\n$dest >> $GITHUB_ENV
+          echo All_Files=$dest >> $GITHUB_ENV
           echo destin: $dest
 
       - name: Create Pull Request with CURL
