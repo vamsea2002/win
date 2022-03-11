@@ -20,7 +20,7 @@ jobs:
 
       - name: List all changed files
         run: |
-          dest=""         
+          dest="List of File Changes\n"         
           for file in ${{ steps.changed-files.outputs.all_changed_and_modified_files }}; 
           do
           dest+="${file}\n"          
