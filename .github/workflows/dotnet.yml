@@ -25,7 +25,7 @@ jobs:
           do
           dest+="${file}\n"          
           done
-          echo All_Files=$dest >> $GITHUB_ENV
+          echo All_Files=All Added and Modified flies\n$dest >> $GITHUB_ENV
           echo destin: $dest
 
       - name: Create Pull Request with CURL
