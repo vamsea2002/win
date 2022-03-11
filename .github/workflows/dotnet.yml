@@ -16,7 +16,10 @@ jobs:
 
       - name: Get changed files using a comma separator
         id: changed-files
-        uses: tj-actions/changed-files@v17.3       
+        uses: tj-actions/changed-files@v17.3  
+
+      - name: Changed files
+        echo: ${{ steps.changed-files }}    
 
       - name: List all changed files
         run: |
