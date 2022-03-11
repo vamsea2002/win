@@ -18,19 +18,19 @@ jobs:
         id: changed-files
         uses: tj-actions/changed-files@v17.3
         with:
-          separator: "\n"
+          separator: ","
 
       - name: List all changed files
         run: |
           filesList=""
           for file in ${{ steps.changed-files.outputs.all_changed_and_modified_files }}; do
             read dest
-            filesList+=" ${file}"
-
-          echo "All_Files=$file" >> $GITHUB_ENV
-
+            filesList+=" ${dest}"            
             echo "$file was changed"
           done
+          echo All Changed files list: $filesList
+          echo "All_Files=$file" >> $GITHUB_ENV
+
 
       - name: Create Pull Request with CURL
         run: 'curl -X POST --header "Authorization: token ${{secrets.PAT}}" -d "{\"title\":\"Automated Pull Request From dev Branch\",\"body\": \"{{env.All_Files}}\",\"head\": \"dev\",\"base\": \"main\"}" https://api.github.com/repos/vamsea2002/win/pulls'
