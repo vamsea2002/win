@@ -25,7 +25,7 @@ jobs:
           dest=""         
           for file in ${{ steps.changed-files.outputs.all_changed_and_modified_files }}; 
           do
-          dest+=$file
+          dest+=$file$'\n'
           echo "$file was added"$'\n'
           done
           echo All_Files=$dest >> $GITHUB_ENV
