@@ -31,16 +31,20 @@ jobs:
       - name: List all deleted files
         run: |
           echo ${{ steps.changed-files.outputs.deleted_files }}
+
           delFileLst=${{ steps.changed-files.outputs.deleted_files }}
+
           if (( ${#delFileLst[@]} == 0 )); then
-          echo All_Del_Files=$destDelFiles >> $GITHUB_ENV
+          echo All_Del_Files='' >> $GITHUB_ENV
           fi
+          
           if (( ${#delFileLst[@]} != 0 )); then                    
           destDelFiles="List of deleted Files\n"         
           for delfile in ${{ steps.changed-files.outputs.deleted_files }}; 
           do
           destDelFiles+="${delfile}\n"          
           done
+
           echo All_Del_Files=$destDelFiles >> $GITHUB_ENV
           echo destDelFiles: $destDelFiles
           fi
