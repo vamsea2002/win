@@ -23,7 +23,8 @@ jobs:
       - name: List all changed files
         run: |          
           echo All Changed files list: ${{ steps.changed-files.outputs.all_changed_and_modified_files }}
-          echo "All_Files=${{ steps.changed-files.outputs.all_changed_and_modified_files }}" >> $GITHUB_ENV
+          echo lst = ${{ steps.changed-files.outputs.all_changed_and_modified_files }};
+          echo "All_Files=$lst" >> $GITHUB_ENV
 
 
       - name: Create Pull Request with CURL
