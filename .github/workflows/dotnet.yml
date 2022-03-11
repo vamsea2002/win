@@ -11,20 +11,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with: 
+        with:
           fetch-depth: 0
-      
+
       - name: Get changed files using a comma separator
         id: changed-files
         uses: tj-actions/changed-files@v17.3
         with:
-          separator: ","
+          separator: " "
 
       - name: List all changed files
         run: |
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            echo "$file was changed"
+          dest=""         
+          for file in ${{ steps.changed-files.outputs.all_changed_and_modified_files }}; 
+          do
+          dest+=$file
+          echo "$file was added"
           done
+          echo All_Files=$dest >> $GITHUB_ENV
 
       - name: Create Pull Request with CURL
-        run: 'curl -X POST --header "Authorization: token ${{secrets.PAT}}" -d "{\"title\":\"Automated Pull Request From dev Branch\",\"body\": \"Automated Pull Request From dev Branch into master branch\",\"head\": \"dev\",\"base\": \"main\"}" https://api.github.com/repos/vamsea2002/win/pulls'
+        run: 'curl -X POST --header "Authorization: token ${{secrets.PAT}}" -d "{\"title\":\"Automated Pull Request From dev Branch\",\"body\": \"{{env.All_Files}}\",\"head\": \"dev\",\"base\": \"main\"}" https://api.github.com/repos/vamsea2002/win/pulls'
