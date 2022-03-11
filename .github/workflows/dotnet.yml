@@ -25,22 +25,29 @@ jobs:
           do
           dest+="${file}\n"          
           done
-          echo All_Files=All Added and Modified flies\n$dest >> $GITHUB_ENV
+          echo All_Files=$dest >> $GITHUB_ENV
           echo destin: $dest
       
       - name: List all deleted files
         run: |
           echo ${{ steps.changed-files.outputs.deleted_files }}
+
           delFileLst=${{ steps.changed-files.outputs.deleted_files }}
+
+          if (( ${#delFileLst[@]} == 0 )); then
+          echo All_Del_Files='' >> $GITHUB_ENV
+          fi
+          
           if (( ${#delFileLst[@]} != 0 )); then                    
           destDelFiles="List of deleted Files\n"         
           for delfile in ${{ steps.changed-files.outputs.deleted_files }}; 
           do
           destDelFiles+="${delfile}\n"          
           done
-          echo All_Files=$destDelFiles >> $GITHUB_ENV
+
+          echo All_Del_Files=$destDelFiles >> $GITHUB_ENV
           echo destDelFiles: $destDelFiles
           fi
 
       - name: Create Pull Request with CURL
-        run: 'curl -X POST --header "Authorization: token ${{secrets.PAT}}" -d "{\"title\":\"Automated Pull Request From dev Branch\",\"body\": \"${{env.All_Files}}\",\"head\": \"dev\",\"base\": \"main\"}" https://api.github.com/repos/vamsea2002/win/pulls'
+        run: 'curl -X POST --header "Authorization: token ${{secrets.PAT}}" -d "{\"title\":\"Automated Pull Request From dev Branch\",\"body\": \"${{env.All_Files}} ${{env.All_Del_Files}}\",\"head\": \"dev\",\"base\": \"main\"}" https://api.github.com/repos/vamsea2002/win/pulls'
