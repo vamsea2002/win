@@ -25,12 +25,10 @@ jobs:
           dest=""         
           for file in ${{ steps.changed-files.outputs.all_changed_and_modified_files }}; 
           do
-          dest+=$file$'\n'
-          echo "$file was added"$'\n'
+          dest+="${file}\n"          
           done
           echo All_Files=$dest >> $GITHUB_ENV
           echo destin: $dest
-          echo Files: $file
           
 
       - name: Create Pull Request with CURL
